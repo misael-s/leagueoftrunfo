@@ -629,6 +629,7 @@ body {
   from {
     right: 10%;
     left: 80%;
+    bottom: 20%;
     transform: rotate(130deg);
   }
 }
@@ -637,6 +638,7 @@ body {
   from {
     right: 0%;
     left: 80%;
+    bottom: 20%;
   }
 }
 
