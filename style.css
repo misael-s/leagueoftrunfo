@@ -1,0 +1,773 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-size: 60%;
+  padding: 0;
+  margin: 0;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFUZ0bbck.woff2)
+    format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+.container {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: hidden;
+  z-index: 8;
+}
+.container video {
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 0.138889%;
+  left: 100%;
+  transform: translate(-100%, -0.138889%);
+  z-index: -9;
+}
+
+/* Tela inicial */
+.container .initialScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: url("img/backgrounds/menu_background.jpg") no-repeat center/ cover;
+  z-index: 9;
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .initialScreen .result {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  font-size: 8rem;
+  color: #bb8036;
+  text-shadow: -4px 0px 4px #000, 4px 0px 4px #000, 0 4px 4px #000,
+    0 -4px 4px #000;
+  background: #00000060;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .initialScreen .result img {
+  width: 92px;
+  height: 92px;
+}
+.container .initialScreen .title {
+  position: absolute;
+  font-size: 8rem;
+  color: #bb8036;
+  text-shadow: -4px 0px 4px #000, 4px 0px 4px #000, 0 4px 4px #000,
+    0 -4px 4px #000;
+  z-index: 1;
+}
+.container .initialScreen .initialImage {
+  position: relative;
+  display: flex;
+  animation: swing 12s linear infinite;
+}
+.container .initialScreen .initialImage .image {
+  position: relative;
+  width: 150px;
+  height: 250px;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  box-shadow: 0px 0px 4px 2px #fcfbc8;
+  z-index: -1;
+}
+.container .initialScreen .initialImage .image:first-child {
+  transform: rotate(-30deg);
+  background: url("img/cards/maquina.png") no-repeat center/cover;
+}
+.container .initialScreen .initialImage .image:last-child {
+  transform: rotate(30deg);
+  background: url("img/cards/jogador.png") no-repeat center/cover;
+}
+.container .initialScreen button {
+  position: absolute;
+  bottom: 10%;
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  color: #bb8036;
+  background: none;
+  text-shadow: -4px 0px 4px #000, 4px 0px 4px #000, 0 4px 4px #000,
+    0 -4px 4px #000;
+}
+.container .initialScreen button:hover {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+/* Máquina */
+.maquina {
+  position: relative;
+  flex: 1;
+  transform: rotate(180deg);
+}
+.maquina::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ffffff00;
+  z-index: 99;
+}
+
+.game {
+  position: relative;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game .disabled {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #ffffff00;
+  z-index: 99;
+}
+/* Emotes */
+.game .emoteMaquina,
+.game .emoteJogador {
+  position: absolute;
+  top: -5%;
+  z-index: 99;
+}
+.game .emoteMaquina {
+  right: 180%;
+}
+.game .emoteJogador {
+  left: 180%;
+}
+
+/* Card Game */
+.game .maquinaMove,
+.game .jogadorMove {
+  position: relative;
+  width: 129px;
+  height: 210px;
+  margin: 0 20px;
+  border-radius: 8px;
+}
+.game .maquinaMove .carta,
+.game .jogadorMove .carta {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: none;
+}
+.game .maquinaMove .carta {
+  background: url("img/cards/maquina.png") no-repeat center/ cover;
+}
+.game .jogadorMove .carta {
+  background: url("img/cards/jogador.png") no-repeat center/ cover;
+}
+.game .maquinaMove .carta .front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("img/cards/maquina.png") no-repeat center/ cover;
+  z-index: 9;
+}
+.game .jogadorMove .carta .front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("img/cards/jogador.png") no-repeat center/ cover;
+  z-index: 9;
+}
+
+/* Tutorial */
+.game .tutorial {
+  position: absolute;
+  width: 30%;
+  right: 0px;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  animation: swing 12s linear infinite;
+}
+.game .tutorial p {
+  position: absolute;
+  width: fit-content;
+  right: 80px;
+  bottom: 60%;
+  padding: 4px;
+  font-size: 1rem;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0px 0px 4px 1px #ffffff;
+}
+.game .tutorial img {
+  transform: rotateY(180deg);
+}
+
+/* Jogador */
+.jogador {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+.pontuacao {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 30%;
+
+  display: flex;
+  font-size: 0.8rem;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: #00000040;
+  border-radius: 0px 24px 0px 0px;
+  animation: moveScore 2s linear;
+}
+.pontuacao .vitorias,
+.pontuacao .empates,
+.pontuacao .derrotas,
+.pontuacao .pontos {
+  margin-top: 20px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pontuacao img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.pontuacao span {
+  font-size: 1rem;
+  margin-left: 5px;
+}
+.pontuacao .pontos {
+  width: 100%;
+  margin-top: -20px;
+  text-align: center;
+  font-size: 1rem;
+}
+.pontuacao .pontos span {
+  font-size: 1.2rem;
+}
+.maquina .pontuacao {
+  border-radius: 0px 0px 0px 24px;
+  transform: rotate(180deg);
+}
+
+/* Deck na Mão */
+.hand {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.carta {
+  position: absolute;
+  width: 129px;
+  height: 210px;
+  bottom: -80%;
+  cursor: pointer;
+
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+
+  border-radius: 8px;
+  border: 2px solid #000000;
+  box-shadow: 0px 0px 4px 2px #fcfbc8;
+}
+.maquina .carta {
+  background: url("img/cards/maquina.png") no-repeat center/ cover;
+}
+.maquina .carta::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url("img/cards/maquina.png") no-repeat center/ cover;
+}
+.jogador .carta {
+  position: absolute;
+  background: url("img/cards/jogador.png") no-repeat center/ cover;
+}
+.jogador .carta::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url("img/cards/jogador.png") no-repeat center/ cover;
+  z-index: -1;
+}
+.jogador .carta .back {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hand .carta:active {
+  width: 139px;
+  height: 220px;
+  bottom: 5px;
+  transform: rotateY(180deg);
+  z-index: 99;
+}
+.hand .carta:active .back {
+  transform: rotateY(-180deg);
+}
+.hand .carta:active .back > img {
+  background-size: 10%;
+}
+
+/* Cartas na mão */
+.carta:nth-child(1) {
+  left: 37%;
+  bottom: -125px;
+  transform: rotate(-25deg);
+}
+.carta:nth-child(2) {
+  left: 42%;
+  bottom: -85px;
+  transform: rotate(-20deg);
+}
+.carta:nth-child(3) {
+  left: 47%;
+  bottom: -60px;
+  transform: rotate(0deg);
+}
+.carta:nth-child(4) {
+  left: 52%;
+  bottom: -85px;
+  transform: rotate(15deg);
+}
+.carta:nth-child(5) {
+  left: 57%;
+  bottom: -125px;
+  transform: rotate(20deg);
+}
+/* Back */
+.carta .back img {
+  position: absolute;
+  width: 92%;
+  height: 92%;
+  top: 4%;
+  bottom: 4%;
+  left: 4%;
+  right: 4%;
+  border-radius: 4px;
+}
+.carta .back .champion {
+  position: absolute;
+  width: 92%;
+  left: 4%;
+  right: 4%;
+  bottom: 4%;
+
+  text-align: center;
+  font-size: 0.8rem;
+  color: #fff;
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  background: #00000080;
+}
+.carta .back .champion span:first-child {
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+/* Status */
+.carta .back .status {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  left: 5%;
+  right: 5%;
+  top: 5%;
+
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 0px 4px 4px 0px;
+
+  color: #fff;
+  background: url("img/backgrounds/status_background.png") no-repeat right /
+    cover;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  z-index: -99;
+}
+.hand .carta:active .status {
+  animation: statusMoveLeft 0.6s linear forwards;
+}
+/* Role */
+.carta .back .status .role span {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.carta .back .status .role img {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00000060;
+}
+
+/* Atributos */
+.carta .back .status .attributes {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+}
+.carta .back .status .attributes div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carta .back .status .attributes div img {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.carta .back .status .attributes div span {
+  display: inline-block;
+}
+
+/* Carta selecionada */
+.game .jogadorMove .carta .back .status {
+  animation: statusMoveLeft 0.6s linear forwards;
+}
+.game .maquinaMove .carta .back .status {
+  transform: rotateY(180deg);
+}
+.game .maquinaMove .carta .back .status .attributes {
+  transform: rotateY(180deg);
+}
+.game .jogadorMove .carta .status .role,
+.game .maquinaMove .carta .status .role {
+  display: none;
+}
+.game .carta .status .attributes {
+  flex-flow: column;
+  z-index: 99;
+}
+.game .status .attributes span {
+  width: 100%;
+  text-align: center;
+}
+.game .status .attributes span:hover img {
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+  text-align: left;
+  left: -5px;
+  box-shadow: 0px 0px 4px 4px #fcfbc8;
+}
+
+/* Deck na Mesa */
+.cheap {
+  position: absolute;
+  top: 0;
+  right: 20%;
+  animation: moveCardDeck 2s linear;
+}
+.jogador .cheap .carta .countDeckCard {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #000000c0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-45deg);
+}
+.jogador .cheap .carta:last-child {
+  animation: startEffect 2s infinite;
+}
+.jogador .cheap .carta:last-child:active {
+  width: 139px;
+  height: 220px;
+}
+
+/* Cartas na messa */
+.cheap .carta:nth-child(1) {
+  top: 0;
+  transform: rotate(30deg);
+}
+.cheap .carta:nth-child(2) {
+  top: 0;
+  transform: rotate(40deg);
+}
+.cheap .carta:nth-child(3) {
+  top: 0;
+  transform: rotate(50deg);
+}
+.cheap:only-child img {
+  height: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .carta,
+  .game .cardMove {
+    width: 119px;
+    height: 200px;
+  }
+  .hand .carta:active {
+    width: 129px;
+    height: 210px;
+  }
+  .cheap {
+    top: -30px;
+    left: -100px;
+    right: auto;
+  }
+}
+
+/* Disclaimer */
+.disclaimer {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 1rem;
+  font-weight: 700;
+
+  border-radius: 50%;
+  background: #bb8036;
+
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 99;
+}
+.disclaimer a {
+  color: #fbef7f;
+}
+.disclaimer:hover {
+  width: 30%;
+  height: fit-content;
+  padding: 20px;
+  font-size: 0.7rem;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 99;
+}
+/* Animações */
+@keyframes initialScreen {
+  0% {
+    opacity: 1;
+    background-size: 100%;
+  }
+  50% {
+    opacity: 0.5;
+    background-size: 150%;
+  }
+  100% {
+    opacity: 0;
+    background-size: 200%;
+  }
+}
+
+@keyframes startEffect {
+  0% {
+    box-shadow: 0px 0px 25px #fbf37f;
+  }
+  30% {
+    box-shadow: 0px 0px 25px #a17e0c;
+  }
+  60% {
+    box-shadow: 0px 0px 25px #d68e07;
+  }
+  100% {
+    box-shadow: 0px 0px 25px #fbef7f;
+  }
+}
+
+@keyframes moveCardToHand {
+  from {
+    right: 10%;
+    left: 80%;
+    transform: rotate(130deg);
+  }
+}
+
+@keyframes moveCardDeck {
+  from {
+    right: 0%;
+    left: 80%;
+  }
+}
+
+@keyframes moveScore {
+  from {
+    width: 45%;
+    top: 0%;
+    bottom: -90%;
+  }
+}
+
+/* Status animation */
+@keyframes statusMoveLeft {
+  0% {
+    left: 0%;
+  }
+  30% {
+    left: 30%;
+  }
+  60% {
+    left: 60%;
+  }
+  100% {
+    left: 101%;
+  }
+}
+
+@keyframes statusMoveLeftReset {
+  0% {
+    left: 101%;
+  }
+  30% {
+    left: 60%;
+  }
+  60% {
+    left: 30%;
+  }
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes statusMoveRight {
+  0% {
+    left: auto;
+    right: 0%;
+  }
+  30% {
+    right: 30%;
+    left: auto;
+  }
+  60% {
+    right: 60%;
+    left: auto;
+  }
+  100% {
+    right: 101%;
+    left: auto;
+  }
+}
+
+@keyframes statusMoveRightReset {
+  0% {
+    right: 101%;
+    left: auto;
+  }
+  30% {
+    right: 60%;
+    left: auto;
+  }
+  60% {
+    right: 30%;
+    left: auto;
+  }
+  100% {
+    right: 0%;
+    left: auto;
+  }
+}
+
+@keyframes combatCardMaquina {
+  from {
+    left: -100px;
+    transform: rotate(10deg);
+  }
+  to {
+    left: 15px;
+    transform: rotate(0deg);
+    box-shadow: 12px 0px 24px #bb8036;
+  }
+}
+@keyframes combatCardJogador {
+  from {
+    right: -100px;
+    transform: rotate(-10deg);
+  }
+  to {
+    right: 15px;
+    transform: rotate(0deg);
+    box-shadow: -12px 0px 24px #0ca19e;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(100deg) scale(1.1);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes opacityOut {
+  from {
+    opacity: 1;
+    box-shadow: 0px 0px 40px 4px #ff7a45;
+  }
+  to {
+    opacity: 0;
+    box-shadow: 0px 0px 20px 4px #ff4545;
+  }
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(1deg) rotateX(20deg) rotateZ(5deg);
+  }
+  50% {
+    transform: rotate(-1deg) rotateX(-20deg) rotateZ(-5deg);
+  }
+  100% {
+    transform: rotate(1deg) rotateX(20deg) rotateZ(5deg);
+  }
+}

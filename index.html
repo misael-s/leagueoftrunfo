@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="img/cards/jogador.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <title>League of Trunfo</title>
+</head>
+
+<body>
+  <!-- Áudio -->
+  <audio src="" loop="true" preload="auto" type="audio/mpeg" id="mainAudio"></audio>
+  <audio src="" preload="auto" type="audio/mpeg" id="cardAudio"></audio>
+  <audio src="" preload="auto" type="audio/mpeg" id="emoteAudio"></audio>
+  <!-- Container -->
+  <div class="container">
+    <video autoplay="true" loop="true" preload="auto" src="video/ionia-splashvideo.webm"></video>
+    <!-- Tela Inicial -->
+    <div class="initialScreen">
+      <div class="title">League of Trunfo</div>
+      <div class="initialImage">
+        <div class="image"></div>
+        <div class="image"></div>
+      </div>
+      <button onclick="Jogar()">Jogar</button>
+    </div>
+    <!-- Máquina -->
+    <div class="maquina">
+      <!-- Pontuação -->
+      <div class="pontuacao">
+
+      </div>
+      <!-- Cartas -->
+      <div class="hand">
+        <!-- Carta -->
+
+        <!-- Fim Cartas -->
+      </div>
+      <!-- Deck da Mesa -->
+      <div class="cheap">
+      </div>
+    </div>
+    <!-- Game -->
+    <div class="game">
+      <div></div>
+      <!-- Máquina Zona -->
+      <div class="maquinaMove" id="idJogadorCardMove" class="cardMove">
+        <div class="emoteMaquina"></div>
+      </div>
+      <!-- Jogador Zona -->
+      <div class="jogadorMove" id="idJogadorCardMove" class="cardMove">
+        <div class="emoteJogador"></div>
+      </div>
+      <div class="tutorial">OK</div>
+    </div>
+    <!-- Jogador -->
+    <div class="jogador">
+      <!-- Pontuação -->
+      <div class="pontuacao">
+
+      </div>
+      <!-- Cartas -->
+      <div class="hand">
+        <!-- Carta -->
+
+        <!-- Fim Cartas -->
+      </div>
+      <!-- Deck da Mesa -->
+      <div class="cheap">
+      </div>
+    </div>
+    <!-- Disclaimer -->
+    <div class="disclaimer">
+      <div>!</div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>
